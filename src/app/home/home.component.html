@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="d-flex">
+        <div class="search-box pt-3 ">
+            <img src="./../../assets/images/search.svg"
+                 height=20
+                 width=20>
+            <input type="text"
+                   class="form-control"
+                   placeholder="search"
+                   [(ngModel)]="searchQuery">
+            <button class="btn btn-success px-4"
+                    (click)="onSearch()">Search</button>
+        </div>
+        <div class=" d-flex align-item-center mt-3 ml-4"
+             style="background: white;">
+            <button class="btn btn-default border"
+                    [class.active]="sortby=='average'"
+                    (click)="sortByAverage()">Sort by Average</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid mt-0 p-4">
+    <div class="row">
+        <div class="col-md-2 p-1"
+             *ngFor="let book of books">
+            <app-book-card [book]="book"></app-book-card>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <pagination [totalItems]="totalCount"
+                [itemsPerPage]="'12'"
+                [maxSize]="'5'"
+                [(ngModel)]="currPage"
+                (pageChanged)="getBooks($event.page)"></pagination>
+</div>

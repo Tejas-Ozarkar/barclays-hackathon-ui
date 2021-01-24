@@ -1,0 +1,59 @@
+<div class="main-wrap container-fluid">
+    <div class="row">
+
+        <div class="col-md-5 background">
+
+        </div>
+        <div class="col-md-7 m-auto">
+            <div class="signin-form  m-auto">
+                <label class="text-secondary">Username*</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.username">
+                <label class="text-secondary mt-2">Password*</label>
+                <input type="password"
+                       class="form-control"
+                       [(ngModel)]="userDetails.password">
+                <label class="text-secondary mt-2">Name*</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.name">
+                <label class="text-secondary mt-2">Email*</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.email">
+                <label class="text-secondary mt-2">Phone*</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.phone">
+                <label class="text-secondary mt-2">Address Line 1*</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.line1">
+                <label class="text-secondary mt-2">Address Line 2</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.line2">
+                <label class="text-secondary mt-2">State*</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.state">
+                <label class="text-secondary mt-2">City*</label>
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="userDetails.city">
+                <label class="text-secondary mt-2">Pincode*</label>
+                <input type="number"
+                       class="form-control"
+                       [(ngModel)]="userDetails.pincode">
+                <button class="btn btn-primary mt-4"
+                        (click)="signUp()">Signup</button>
+
+                <button class="btn btn-default mt-4"
+                        [routerLink]="['/auth/signin']">SignIn</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>

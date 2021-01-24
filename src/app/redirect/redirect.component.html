@@ -1,0 +1,7 @@
+<div style="height:100vh" class="d-flex flex-column justify-content-center align-items-center">
+    <img *ngIf="status=='success'" src="./../../assets/images/checked.png">
+    <img  *ngIf="status=='failed'" src="./../../assets/images/report.png">
+    <h1 class="text-secondary my-3">{{status | uppercase}}</h1>
+    <a *ngIf="status=='success'" [routerLink]="['/home']">Back to home</a>
+    <a *ngIf="status=='failed'" [routerLink]="['/cart']">Try again!</a>
+</div>

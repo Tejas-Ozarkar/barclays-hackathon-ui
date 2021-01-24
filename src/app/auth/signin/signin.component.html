@@ -1,0 +1,20 @@
+<div class="main-wrap container-fluid">
+    <div class="row">
+        
+        <div class="col-md-5 background">
+    
+        </div>
+        <div class="col-md-7 m-auto">
+            <div class="signin-form  m-auto">
+                <label class="text-secondary">Username</label>
+                <input class="form-control" type="text" [(ngModel)]="user.username">
+                <label class="text-secondary mt-3">Password</label>
+                <input class="form-control" type="password" [(ngModel)]="user.password">
+                
+                <button class="btn btn-success mt-4" (click)="signIn()">SignIn</button>
+                <button class="btn btn-default mt-4" [routerLink]="['/auth/signup']">SignUp</button>
+            </div>
+        </div>
+    </div>
+
+</div>

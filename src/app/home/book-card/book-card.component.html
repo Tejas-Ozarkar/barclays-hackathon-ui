@@ -1,0 +1,31 @@
+<div class="my-2 custom-card">
+    <img [src]="book.cover"
+         height="350px"
+         width="100%">
+    <div class="rating">
+        <img src="./../../../assets/images/star.png"
+             height="20"
+             width="20">
+        {{book.average_rating}}
+    </div>
+    <div class="p-2">
+        <p class="m-0 mt-1 text-overflow-none text-secondary">
+            {{book.title}}
+        </p>
+        <small class="text-secondary">- {{book.authors}}</small>
+        <p class="text-danger">
+
+
+        </p>
+    </div>
+    <div class="overlay">
+        <div class="other-info">
+            <p><small>Total Ratings</small><br> {{book.ratings_count}}</p>
+            <p><small>Language</small> <br>{{book.language_code}}</p>
+            <p><small>ISBN</small><br> {{book.isbn}}</p>
+        </div>
+        <button class="cart-btn btn btn-success"
+                (click)="addToCart()"> Add to cart ( ₹{{book.price}})</button>
+
+    </div>
+</div>

@@ -1,0 +1,37 @@
+@import "./../../../assets/styles/variables";
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100vw;
+  z-index: 2;
+  background: $off-color;
+  .navbar-brand {
+    font-family: 'Dancing Script', cursive;
+    color: $success-color;
+    font-size: 2em;
+
+  }
+}
+.active {
+  color: $primary-color !important;
+}
+
+.cart-btn{
+    position: relative;
+    .cart-count{
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: $secondary-color;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
