@@ -1,0 +1,16 @@
+<div class="container-fluid"
+     style="margin-top:100px">
+    <h4 class="text-secondary">Previous Orders</h4>
+    <div class="card mt-2 p-2"
+         *ngFor="let id of orderIds">
+        <p><span class="font-weight-bold">Order Id:</span> {{id}}</p>
+        <p><span class="font-weight-bold">Amount:</span> {{orders[id][0].amount}}</p>
+        <p><span class="font-weight-bold">Items:</span>
+            <ng-container *ngFor="let order of orders[id]">
+                {{order.title}},
+            </ng-container>
+        </p>
+    </div>
+</div>
+
+<app-loader *ngIf="showLoader"></app-loader>

@@ -10,15 +10,16 @@
                              width=100>
                     </div>
                     <div class="p-2">
-                        <p class="m-0">{{book.title}} </p>{{book.id}}
+                        <p class="m-0">{{book.title}} </p> 
                         <small>{{book.authors}}</small><br>
                         <small>ISBN:{{book.isbn}}</small><br>
                         <small>Language:{{book.language_code}}</small>
                     </div>
                 </div>
+                <h4 *ngIf="book.quantity"> x {{book.quantity}}</h4>
                 <div>
                     <h4> ₹{{book.price}}</h4>
-                    <button class="btn btn-danger" (click)="removeFromCart(i)">X</button>
+                    <button class="btn btn-danger" (click)="removeFromCart(book)">X</button>
                 </div>
             </div>
 
@@ -32,8 +33,6 @@
             </button>
         </div>
     </div>
-
-
-
-
 </div>
+
+<app-loader *ngIf="showloader"></app-loader>

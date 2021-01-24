@@ -15,18 +15,18 @@
          id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link active"
-                   [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link"
+                   [routerLink]="['/home']" [routerLinkActive]="'active'">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   [routerLink]="['/home']">Orders</a>
+                   [routerLink]="['/orders']" [routerLinkActive]="'active'">Orders</a>
             </li>
         </ul>
 
         <button class="cart-btn btn btn-default mr-3"
                 [routerLink]="['/cart']"
-                *ngIf="cartCount!=0">
+                *ngIf="cartCount!=0 && isLoggedIn">
             <div class="cart-count">{{cartCount}}</div>
             <img src="./../../../assets/images/carts.png"
                  height=25

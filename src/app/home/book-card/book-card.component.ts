@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../shared/services/auth.service';
 import { SnackbarService } from './../../shared/components/snackbar/snackbar.service';
 import { CartService } from './../../shared/services/cart.service';
 import { Book } from './../../shared/models/book.model';
@@ -28,14 +30,19 @@ export class BookCardComponent implements OnInit {
 
   @Input() book: Book;
 
-  constructor(private readonly cartService: CartService, private readonly snackbar: SnackbarService) { }
+  constructor(private readonly authService: AuthService,private readonly router: Router,
+    private readonly cartService: CartService, private readonly snackbar: SnackbarService) { }
 
   ngOnInit(): void {
     this.book.cover = this.getRandomBookCover();
   }
 
   public addToCart() {
-    this.cartService.addToCart(this.book);
+    if(this.authService.isLoggedOut()){
+      this.router.navigateByUrl("/auth/signin");
+      return;
+    }
+    this.cartService.addToCart(this.book).subscribe();
     this.snackbar.show(`${this.book.title} added to cart`);
   }
 

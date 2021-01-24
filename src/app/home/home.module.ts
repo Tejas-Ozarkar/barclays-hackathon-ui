@@ -6,6 +6,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HomeComponent, BookCardComponent],
@@ -13,7 +14,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     CommonModule,
     HomeRoutingModule,
     PaginationModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

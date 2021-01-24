@@ -15,7 +15,7 @@
              style="background: white;">
             <button class="btn btn-default border"
                     [class.active]="sortby=='average'"
-                    (click)="sortByAverage()">Sort by Average</button>
+                    (click)="sortByAverage()">Sort by rating</button>
         </div>
     </div>
 
@@ -36,3 +36,5 @@
                 [(ngModel)]="currPage"
                 (pageChanged)="getBooks($event.page)"></pagination>
 </div>
+
+<app-loader *ngIf="!books"></app-loader>

@@ -1,44 +1,62 @@
+import { HttpClient } from '@angular/common/http';
 import { Book } from './../models/book.model';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  public booksInCart: Book[] = [];
+  public booksInCart = [];
+
   private cartSubject = new BehaviorSubject<Book[]>([]);
   public cart = this.cartSubject.asObservable();
 
-  constructor() {
-    this.booksInCart = this.getCartBooks() || [];
-    this.updateCart();
+  constructor(private readonly http: HttpClient) {
+
   }
 
-  public addToCart(book: Book) {
+  public addToCart(book: Book): Observable<Book[]> {
     this.booksInCart.push(book);
-    this.updateCart();
+    this.updateCart(this.booksInCart);
+    return this.http.post<Book[]>(`${environment.api}/cart`, { id: book.id })
+      .pipe(
+        tap((cart) => {
+          // this.updateCart(cart);
+        })
+      );
   }
 
-  public deleteFromCart(index: number) {
-    this.booksInCart = this.booksInCart.filter((b, i) => i != index);
-    console.log(this.booksInCart);
-    this.updateCart();
+  public deleteFromCart(book: Book, booksInCart): Observable<Book[]> {
+    this.booksInCart = booksInCart;
+    this.updateCart(this.booksInCart);
+    return this.http.post<Book[]>(`${environment.api}/cart/delete`, { id: book.id })
+      .pipe(
+        tap((cart) => {
+          // this.updateCart(cart);
+        })
+      );
   }
 
-  private updateCart() {
-    localStorage.setItem('cart-books', JSON.stringify(this.booksInCart));
-    this.cartSubject.next(this.booksInCart);
+  private updateCart(cart) {
+    this.cartSubject.next(cart);
   }
 
-  public getCartBooks() {
-    return JSON.parse(localStorage.getItem('cart-books'));
+  public getCart(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${environment.api}/cart`)
+      .pipe(
+        tap((cart) => {
+          this.booksInCart.push(...cart);
+          this.updateCart(cart);
+        })
+      );
   }
 
-  public clearCart() {
-    localStorage.removeItem('cart-books');
+  public clearCart(){
     this.booksInCart = [];
-    this.updateCart();
+    return this.http.get(`${environment.api}/cart/clear`);
   }
 }

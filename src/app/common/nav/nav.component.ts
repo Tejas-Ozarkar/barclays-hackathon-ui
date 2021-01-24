@@ -11,7 +11,7 @@ import { AfterViewChecked, Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  public cartCount:number;
+  public cartCount: number;
   public isLoggedIn: boolean;
   constructor(
     private router: Router,
@@ -20,16 +20,21 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.cartService.cart.subscribe(books=>{
-      this.cartCount = books.length || 0;
+    this.cartService.getCart().subscribe();
+    this.cartService.cart.subscribe(books => {
+      console.log(books);
+      this.cartCount = 0;
+      books.forEach(book => {
+        this.cartCount += book.quantity ? book.quantity : 1;
+      })
     });
   }
-  
-  ngAfterViewChecked(){
+
+  ngAfterViewChecked() {
     this.isLoggedIn = this.authService.isLoggedIn();
   }
 
-  public logout(){
+  public logout() {
     this.authService.logout();
     this.isLoggedIn = false;
     this.router.navigateByUrl('/home');

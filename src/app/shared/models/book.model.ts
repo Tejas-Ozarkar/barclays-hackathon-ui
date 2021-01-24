@@ -8,4 +8,5 @@ export class Book {
     ratings_count: number;
     price: number;
     cover?: string;
+    quantity?: number;
 }

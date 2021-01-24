@@ -17,7 +17,7 @@ export class RedirectComponent implements OnInit {
     this.route.queryParams.subscribe(resp=>{
       if(resp.payment_status === 'Credit'){
         this.status = 'success';
-        this.cartService.clearCart();
+        this.cartService.clearCart().subscribe();
       }else{
         this.status = 'failed';
 

@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'redirect', component: RedirectComponent },
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'orders', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
 ];
 
 @NgModule({

@@ -19,7 +19,7 @@ export class SigninComponent {
   public signIn() {
     this.authService.signIn(this.user)
       .subscribe(resp => {
-        this.router.navigateByUrl('/home');
+        window.open('/',"_self");;
         this.authService.setSession(resp);
       });
   }
